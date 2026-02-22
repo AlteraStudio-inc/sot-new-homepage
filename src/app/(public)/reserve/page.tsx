@@ -162,8 +162,8 @@ export default function ReservePage() {
                         <p className="text-center text-stone-500">現在、選択可能なコースがありません。</p>
                     ) : (
                         availableMenus.map(m => (
-                            <Card key={m.id} className="cursor-pointer hover:border-emerald-500 transition-all border-stone-200" onClick={() => { 
-                                setSelectedMenu(m); 
+                            <Card key={m.id} className="cursor-pointer hover:border-emerald-500 transition-all border-stone-200" onClick={() => {
+                                setSelectedMenu(m);
                                 // 初回の場合はコース選択後にお悩みを聞く
                                 if (isFirstTime) {
                                     nextStep("concern");
@@ -171,16 +171,17 @@ export default function ReservePage() {
                                     nextStep("datetime");
                                 }
                             }}>
-                            <CardContent className="p-6 pb-6">
-                                <div className="flex justify-between items-center mb-2">
-                                    <h3 className="font-bold text-lg text-emerald-900">{m.name}</h3>
-                                    <span className="font-bold">&yen;{m.price.toLocaleString()}</span>
-                                </div>
-                                <p className="text-sm text-stone-500 mb-4">{m.description}</p>
-                                <div className="text-xs text-stone-400">所要時間: 約{m.duration_minutes}分</div>
-                            </CardContent>
-                        </Card>
-                    ))}
+                                <CardContent className="p-6 pb-6">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <h3 className="font-bold text-lg text-emerald-900">{m.name}</h3>
+                                        <span className="font-bold">&yen;{m.price.toLocaleString()}</span>
+                                    </div>
+                                    <p className="text-sm text-stone-500 mb-4">{m.description}</p>
+                                    <div className="text-xs text-stone-400">所要時間: 約{m.duration_minutes}分</div>
+                                </CardContent>
+                            </Card>
+                        ))
+                    )}
                 </div>
                 <Button variant="ghost" onClick={() => setCurrentStep("type")} className="mt-4"><ChevronLeft className="mr-2 w-4 h-4" /> 戻る</Button>
             </div>
