@@ -45,6 +45,60 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+  --animate-fade-in: fade-in 0.8s ease-out forwards;
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-float-reverse: float-reverse 5s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(12deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(15deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(12deg);
+  }
+}
+
+@keyframes float-reverse {
+  0% {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  50% {
+    transform: translateY(15px) rotate(-40deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-45deg);
+  }
 }
 
 :root {
@@ -120,6 +174,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

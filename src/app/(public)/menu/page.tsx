@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CalendarCheck, ChevronRight, Check, AlertCircle, Bird } from "lucide-react";
-import * as motion from "framer-motion/client";
 
 export default async function MenuPage() {
     const menus = await prisma.menu.findMany({
@@ -14,33 +13,20 @@ export default async function MenuPage() {
     const firstTimeMenus = menus.filter(m => m.target === 'first_time' || m.target === 'both');
     const returningMenus = menus.filter(m => m.target === 'returning' || m.target === 'both');
 
-    const fadeInUp = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-    };
-
-    const staggerContainer = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.15 }
-        }
-    };
-
     return (
         <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35] overflow-hidden">
             <div className="bg-[#E8F0E4] py-16 md:py-24 text-center relative overflow-hidden">
-                <motion.div animate={{ y: [0, -10, 0], rotate: [12, 15, 12] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute top-10 right-10 z-0">
+                <div className="absolute top-10 right-10 z-0 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
                     <Bird className="text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply flex transform scale-x-[-1]" />
-                </motion.div>
-                <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4">料金表</motion.h1>
-                <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-[#556b5d]">当院で受けられる施術料金をご案内します。</motion.p>
+                </div>
+                <h1 className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4 animate-fade-in-up">料金表</h1>
+                <p className="text-[#556b5d] animate-fade-in-up" style={{ animationDelay: '100ms' }}>当院で受けられる施術料金をご案内します。</p>
             </div>
 
-            <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="container mx-auto px-4 max-w-4xl py-16 md:py-24 space-y-24">
+            <div className="container mx-auto px-4 max-w-4xl py-16 md:py-24 space-y-24">
 
                 {/* 料金一覧 */}
-                <motion.section variants={fadeInUp}>
+                <section className="animate-fade-in-up" style={{ animationDelay: '200ms' }}>
                     <div className="text-center mb-12">
                         <h2 className="text-2xl font-bold text-[#38A182] mb-2 flex items-center justify-center gap-2">
                             <span className="w-8 h-1 bg-[#38A182] rounded-full"></span>
@@ -70,10 +56,10 @@ export default async function MenuPage() {
                             ご不明な点がございましたらお気軽にお問合せください。
                         </div>
                     </div>
-                </motion.section>
+                </section>
 
                 {/* 初めての方へ */}
-                <motion.section variants={fadeInUp}>
+                <section className="animate-fade-in-up" style={{ animationDelay: '300ms' }}>
                     <h3 className="text-2xl font-bold text-[#38A182] mb-6 flex items-center gap-2">
                         <Check className="w-6 h-6" /> 初めての方へ
                     </h3>
@@ -89,10 +75,10 @@ export default async function MenuPage() {
                         <p>・ご予約のない来院はご案内できませんので、必ずご予約をお願い致します。</p>
                         <p className="text-[#38A182] font-bold">・ 組合規制により、6カ月来院されなかった方は、再度検査料金（2,200円）を頂戴致します。ご了承下さい。</p>
                     </div>
-                </motion.section>
+                </section>
 
                 {/* 治療間隔について */}
-                <motion.section variants={fadeInUp}>
+                <section className="animate-fade-in-up" style={{ animationDelay: '400ms' }}>
                     <h3 className="text-2xl font-bold text-[#38A182] mb-6 flex items-center gap-2">
                         <CalendarCheck className="w-6 h-6" /> 治療間隔について
                     </h3>
@@ -128,10 +114,10 @@ export default async function MenuPage() {
                             </p>
                         </div>
                     </div>
-                </motion.section>
+                </section>
 
                 {/* 注意事項 */}
-                <motion.section variants={fadeInUp}>
+                <section className="animate-fade-in-up" style={{ animationDelay: '500ms' }}>
                     <h3 className="text-2xl font-bold text-[#38A182] mb-6 flex items-center gap-2">
                         <AlertCircle className="w-6 h-6" /> 注意事項
                     </h3>
@@ -141,14 +127,14 @@ export default async function MenuPage() {
                             精神科や、心療内科で投薬治療中の方はご対応できない場合がありますので必ず事前にお電話にてご相談ください。
                         </p>
                     </div>
-                </motion.section>
+                </section>
 
-                <motion.div variants={fadeInUp} className="flex justify-center pt-8">
+                <div className="flex justify-center pt-8 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
                     <Button asChild size="lg" className="bg-[#38A182] hover:bg-[#2b7a63] text-white rounded-full px-12 h-16 text-xl shadow-lg hover:scale-105 transition-transform duration-300">
                         <Link href="/reserve"><CalendarCheck className="mr-2 h-6 w-6" /> Webで予約する</Link>
                     </Button>
-                </motion.div>
-            </motion.div>
+                </div>
+            </div>
         </div>
     );
 }
