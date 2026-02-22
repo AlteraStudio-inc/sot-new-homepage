@@ -4,8 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Admin {
@@ -22,37 +23,37 @@ model Menu {
   description      String?
   price            Int
   duration_minutes Int
-  target           String        // "first_time", "returning", "both"
+  target           String // "first_time", "returning", "both"
   is_active        Boolean       @default(true)
   order            Int           @default(0)
   reservations     Reservation[]
 }
 
 model Reservation {
-  id                String   @id @default(cuid())
-  status            String   @default("pending") // "pending", "confirmed", "cancelled"
-  is_first_time     Boolean
-  concern           String?
-  menu_id           String
-  menu              Menu     @relation(fields: [menu_id], references: [id])
-  start_time        DateTime
-  end_time          DateTime
-  customer_name     String
-  customer_kana     String
-  customer_email    String
-  customer_phone    String
-  customer_line_id  String?
-  customer_notes    String?
-  admin_notes       String?
-  created_at        DateTime @default(now())
-  updated_at        DateTime @updatedAt
+  id               String   @id @default(cuid())
+  status           String   @default("pending") // "pending", "confirmed", "cancelled"
+  is_first_time    Boolean
+  concern          String?
+  menu_id          String
+  menu             Menu     @relation(fields: [menu_id], references: [id])
+  start_time       DateTime
+  end_time         DateTime
+  customer_name    String
+  customer_kana    String
+  customer_email   String
+  customer_phone   String
+  customer_line_id String?
+  customer_notes   String?
+  admin_notes      String?
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
 }
 
 model BusinessHour {
   id          Int     @id @default(autoincrement())
-  day_of_week Int     // 0=Sun, 1=Mon, ..., 6=Sat
-  open_time   String  // e.g. "09:00"
-  close_time  String  // e.g. "20:00"
+  day_of_week Int // 0=Sun, 1=Mon, ..., 6=Sat
+  open_time   String // e.g. "09:00"
+  close_time  String // e.g. "20:00"
   is_closed   Boolean @default(false)
 }
 
@@ -60,7 +61,7 @@ model Holiday {
   id          String   @id @default(cuid())
   date        DateTime // Specific Date
   is_full_day Boolean  @default(true)
-  start_time  String?  // If is_full_day is false, specifies partial open time start or end
+  start_time  String? // If is_full_day is false, specifies partial open time start or end
   end_time    String?
   reason      String?
 }
@@ -74,7 +75,7 @@ model MessageTemplate {
 
 model Content {
   id           String   @id @default(cuid())
-  type         String   // "notice", "faq", "symptom", "review"
+  type         String // "notice", "faq", "symptom", "review"
   title        String
   slug         String?  @unique
   content      String

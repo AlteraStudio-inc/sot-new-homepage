@@ -104,7 +104,7 @@ export default function ReservePage() {
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
             <h2 className="text-2xl font-bold text-center mb-8">あなたはどちらですか？</h2>
             <div className="grid md:grid-cols-2 gap-4">
-                <Card className="cursor-pointer hover:border-emerald-500 transition-colors" onClick={() => { setIsFirstTime(true); nextStep("concern"); }}>
+                <Card className="cursor-pointer hover:border-emerald-500 transition-colors" onClick={() => { setIsFirstTime(true); nextStep("menu"); }}>
                     <CardContent className="flex flex-col items-center justify-center p-8 text-center h-full gap-4">
                         <span className="text-4xl">🌱</span>
                         <span className="text-xl font-bold">初めての方</span>
@@ -134,9 +134,6 @@ export default function ReservePage() {
                         className="h-16 text-base rounded-xl border-stone-200 hover:border-emerald-500 hover:bg-emerald-50 justify-start px-4"
                         onClick={() => {
                             setConcern(c);
-                            // 初回は一律で「初回コース」を自動選択させる
-                            const firstMenu = menus.find(m => m.target === "first_time" || m.target === "both");
-                            setSelectedMenu(firstMenu);
                             nextStep("datetime");
                         }}
                     >
@@ -145,20 +142,35 @@ export default function ReservePage() {
                 ))}
             </div>
             <div className="text-center mt-6">
-                <Button variant="ghost" onClick={() => setCurrentStep("type")} className="text-stone-500"><ChevronLeft className="mr-2 w-4 h-4" /> 戻る</Button>
+                <Button variant="ghost" onClick={() => setCurrentStep("menu")} className="text-stone-500"><ChevronLeft className="mr-2 w-4 h-4" /> 戻る</Button>
             </div>
         </div>
     );
 
     const renderMenu = () => {
-        // 2回目以降用のメニュー選択画面
-        const availableMenus = menus.filter(m => m.target === "returning" || m.target === "both");
+        // メニュー選択画面 (初回か2回目以降かで出し分ける)
+        const availableMenus = menus.filter(m => {
+            if (isFirstTime === null) return false;
+            if (m.target === "both") return true;
+            return isFirstTime ? m.target === "first_time" : m.target === "returning";
+        });
         return (
             <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                 <h2 className="text-2xl font-bold text-center mb-8">ご希望のコース</h2>
                 <div className="space-y-4">
-                    {availableMenus.map(m => (
-                        <Card key={m.id} className="cursor-pointer hover:border-emerald-500 transition-all border-stone-200" onClick={() => { setSelectedMenu(m); nextStep("datetime"); }}>
+                    {availableMenus.length === 0 ? (
+                        <p className="text-center text-stone-500">現在、選択可能なコースがありません。</p>
+                    ) : (
+                        availableMenus.map(m => (
+                            <Card key={m.id} className="cursor-pointer hover:border-emerald-500 transition-all border-stone-200" onClick={() => { 
+                                setSelectedMenu(m); 
+                                // 初回の場合はコース選択後にお悩みを聞く
+                                if (isFirstTime) {
+                                    nextStep("concern");
+                                } else {
+                                    nextStep("datetime");
+                                }
+                            }}>
                             <CardContent className="p-6 pb-6">
                                 <div className="flex justify-between items-center mb-2">
                                     <h3 className="font-bold text-lg text-emerald-900">{m.name}</h3>
