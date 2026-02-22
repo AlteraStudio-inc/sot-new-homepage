@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Leaf, Bird, MapPin, Clock, Phone, CalendarCheck, CheckCircle2, HeartPulse, Sparkles, Smile, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const jsonLd = {
@@ -12,7 +15,7 @@ export default function Home() {
     image: "https://example.com/ogp.jpg",
     "@id": "https://www.sot.jp",
     url: "https://www.sot.jp",
-    telephone: "072-000-0000",
+    telephone: "072-840-7798",
     address: {
       "@type": "PostalAddress",
       streetAddress: "宮之阪3丁目5-40",
@@ -38,6 +41,19 @@ export default function Home() {
     priceRange: "$$"
   };
 
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
   return (
     <div className="w-full bg-[#FAF9F5] text-[#2C3E35] font-sans overflow-hidden">
       <script
@@ -46,44 +62,48 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <section className="relative w-full pt-10 pb-20 md:pt-20 md:pb-32 px-4 flex flex-col items-center">
+      <section className="relative w-full pt-10 pb-20 md:pt-20 md:pb-32 px-4 flex flex-col items-center overflow-hidden">
         {/* Floating Decos */}
-        <Bird className="absolute top-20 left-10 text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply rotate-12" />
-        <Leaf className="absolute bottom-10 right-10 text-[#7BB896] w-16 h-16 opacity-60 mix-blend-multiply -rotate-45" />
+        <motion.div animate={{ y: [0, -10, 0], rotate: [12, 15, 12] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="absolute top-20 left-10 z-0">
+          <Bird className="text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply" />
+        </motion.div>
+        <motion.div animate={{ y: [0, 15, 0], rotate: [-45, -40, -45] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }} className="absolute bottom-10 right-10 z-0">
+          <Leaf className="text-[#7BB896] w-16 h-16 opacity-60 mix-blend-multiply" />
+        </motion.div>
 
         <div className="container max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10">
-          <div className="flex-1 space-y-6 text-center md:text-left z-10">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#2C3E35]">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="flex-1 space-y-6 text-center md:text-left z-10 w-full">
+            <motion.h1 variants={fadeInUp} className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#2C3E35]">
               枚方市宮之阪の整体<br />
               <span className="text-[#38A182] mt-2 block text-2xl md:text-3xl lg:text-4xl">
                 中央カイロプラクティック院 枚方院へどうぞ！
               </span>
-            </h1>
-            <p className="text-lg text-[#556b5d] font-medium">
+            </motion.h1>
+            <motion.p variants={fadeInUp} className="text-lg text-[#556b5d] font-bold">
               GAS脳幹健康センター大阪
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
-              <Button asChild size="lg" className="bg-[#38A182] hover:bg-[#2b7a63] text-white rounded-full px-8 h-14 text-lg shadow-lg">
+            </motion.p>
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+              <Button asChild size="lg" className="bg-[#38A182] hover:bg-[#2b7a63] hover:scale-105 transition-all duration-300 text-white rounded-full px-8 h-14 text-lg shadow-lg">
                 <Link href="/reserve"><CalendarCheck className="mr-2 h-5 w-5" /> 【初めての方】ネット予約はこちら</Link>
               </Button>
-            </div>
-            <div className="flex items-center gap-4 text-sm font-medium text-[#556b5d] justify-center md:justify-start">
+            </motion.div>
+            <motion.div variants={fadeInUp} className="flex items-center gap-4 text-sm font-medium text-[#556b5d] justify-center md:justify-start">
               <span className="flex items-center gap-1"><MapPin className="w-4 h-4 text-[#38A182]" />宮之阪駅から徒歩30秒</span>
               <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-[#38A182]" />駐車場3台有り</span>
-            </div>
-          </div>
-          <div className="flex-1 w-full max-w-lg relative">
-            <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-xl border-4 border-white/50 relative z-10">
-              <Image src="/placeholder-hero.jpg" alt="院の外観" fill className="object-cover" priority />
+            </motion.div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="flex-1 w-full max-w-lg relative mt-10 md:mt-0">
+            <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl shadow-[#38a182]/20 border-4 border-white/80 relative z-10 group bg-[#E8F0E4]">
+              <Image src="/hero-image.png" alt="院の外観" fill className="object-cover group-hover:scale-105 transition-transform duration-700" priority sizes="(max-width: 768px) 100vw, 50vw" />
             </div>
             {/* Decorative background blob */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#E8F0E4] rounded-full mix-blend-multiply blur-3xl -z-10"></div>
-          </div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#E8F0E4] rounded-full mix-blend-multiply blur-3xl -z-10 animate-pulse"></div>
+          </motion.div>
         </div>
       </section>
 
       {/* SVG Divider: Wave Top */}
-      <div className="w-full relative h-[100px] overflow-hidden -mb-1">
+      <div className="w-full relative h-[60px] md:h-[100px] overflow-hidden -mb-1">
         <svg viewBox="0 0 1440 100" className="absolute bottom-0 w-full h-full preserve-3d" preserveAspectRatio="none">
           <path d="M0,0 C320,100 420,0 720,50 C1020,100 1120,50 1440,0 L1440,100 L0,100 Z" fill="#E8F0E4"></path>
         </svg>
@@ -92,21 +112,21 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-24 bg-[#E8F0E4] px-4">
         <div className="container max-w-5xl mx-auto">
-          <div className="text-center mb-16 relative">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center mb-16 relative">
             <Leaf className="w-8 h-8 text-[#38A182] mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-[#2C3E35] mb-2">当院が選ばれる5つの特徴</h2>
             <div className="w-16 h-1 bg-[#38A182] mx-auto rounded-full mt-4"></div>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "ボキボキしない安心・安全な施術",
-                desc: "国家資格保有者による強い刺激を行わないソフトな施術。女性やお子様～ご高齢の方まで眠ってしまうほど気持ち良い施術です。",
+                title: "ボキボキしない安全な施術",
+                desc: "国家資格保有者による強い刺激を行わないソフトな施術。眠ってしまうほど気持ち良い施術です。",
                 icon: <HeartPulse className="w-8 h-8 text-white" />
               },
               {
-                title: "脳幹部分を優しく施術",
+                title: "脳幹部分を優しく調整",
                 desc: "頭と首の連結部分のストレスが、高さを変えられる特殊枕で寝ているだけで整う脳幹療法を行っています。",
                 icon: <Sparkles className="w-8 h-8 text-white" />
               },
@@ -116,32 +136,34 @@ export default function Home() {
                 icon: <Smile className="w-8 h-8 text-white" />
               },
               {
-                title: "駅から徒歩30秒！専用駐車場完備",
+                title: "駅から徒歩30秒！駐車場完備",
                 desc: "京阪電車・宮之阪駅から徒歩30秒の便利なアクセス。駐車場も院前に3台完備し、お車でも安心です。",
                 icon: <MapPin className="w-8 h-8 text-white" />
               },
               {
-                title: "完全予約制でしっかり検査と施術",
+                title: "完全予約制でしっかり検査",
                 desc: "一人一人丁寧に施術する関係上、完全予約制。土曜日も1日受付しておりますのでお早めにご連絡ください。",
                 icon: <CalendarCheck className="w-8 h-8 text-white" />
               },
             ].map((f, i) => (
-              <Card key={i} className="border-none rounded-[2rem] shadow-sm hover:shadow-md transition-shadow bg-white overflow-hidden relative group">
-                <CardContent className="p-8 pb-10 flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-[#38A182] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    {f.icon}
-                  </div>
-                  <h3 className="text-lg font-bold text-[#2C3E35] mb-4 leading-snug">{f.title}</h3>
-                  <p className="text-[#556b5d] text-sm leading-relaxed">{f.desc}</p>
-                </CardContent>
-              </Card>
+              <motion.div key={i} variants={fadeInUp}>
+                <Card className="border-none rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white overflow-hidden relative group h-full">
+                  <CardContent className="p-8 pb-10 flex flex-col items-center text-center h-full">
+                    <div className="w-16 h-16 bg-[#38A182] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-md">
+                      {f.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-[#2C3E35] mb-4 leading-snug">{f.title}</h3>
+                    <p className="text-[#556b5d] text-sm leading-relaxed">{f.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* SVG Divider: Wave Bottom */}
-      <div className="w-full relative h-[100px] overflow-hidden -mt-1 transform rotate-180">
+      <div className="w-full relative h-[60px] md:h-[100px] overflow-hidden -mt-1 transform rotate-180">
         <svg viewBox="0 0 1440 100" className="absolute bottom-0 w-full h-full preserve-3d" preserveAspectRatio="none">
           <path d="M0,0 C320,100 420,0 720,50 C1020,100 1120,50 1440,0 L1440,100 L0,100 Z" fill="#E8F0E4"></path>
         </svg>

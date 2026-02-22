@@ -1,17 +1,29 @@
+"use client";
+
 import { Bird, MapPin, Clock, Phone, Car } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 export default function AccessPage() {
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    };
+
     return (
-        <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35]">
+        <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35] overflow-hidden">
             <div className="bg-[#E8F0E4] py-16 md:py-24 text-center relative overflow-hidden">
-                <Bird className="absolute top-10 left-10 text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply rotate-12" />
-                <h1 className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4">アクセス</h1>
-                <p className="text-[#556b5d]">中央カイロプラクティック院 枚方院へのご案内</p>
+                <motion.div animate={{ y: [0, -10, 0], rotate: [12, 15, 12] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute top-10 left-10 z-0">
+                    <Bird className="text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply" />
+                </motion.div>
+                <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4">アクセス</motion.h1>
+                <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-[#556b5d]">中央カイロプラクティック院 枚方院へのご案内</motion.p>
             </div>
 
-            <div className="container mx-auto px-4 max-w-4xl py-16 md:py-24 space-y-12">
-                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4]">
+            <motion.div initial="hidden" animate="visible" variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+            }} className="container mx-auto px-4 max-w-4xl py-16 md:py-24 space-y-12">
+                <motion.div variants={fadeInUp} className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4]">
                     <div className="grid md:grid-cols-2 gap-12">
                         <div className="space-y-6">
                             <h2 className="text-2xl font-bold text-[#38A182] border-b pb-4 border-[#E8F0E4]">店舗情報</h2>
@@ -51,8 +63,8 @@ export default function AccessPage() {
                             ></iframe>
                         </div>
                     </div>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </div>
     );
 }

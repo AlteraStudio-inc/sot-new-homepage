@@ -1,21 +1,39 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Bird, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function ConceptPage() {
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    };
+
+    const staggerContainer = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.15 }
+        }
+    };
+
     return (
         <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35]">
             <div className="bg-[#E8F0E4] py-16 md:py-24 text-center relative overflow-hidden">
-                <Bird className="absolute top-10 left-10 text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply rotate-12" />
-                <h1 className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4">院長あいさつ</h1>
-                <p className="text-[#556b5d]">院長 鍋島 彰吾 (なべしま しょうご) からのメッセージ</p>
+                <motion.div animate={{ y: [0, -10, 0], rotate: [12, 15, 12] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute top-10 left-10 z-0">
+                    <Bird className="text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply" />
+                </motion.div>
+                <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4">院長あいさつ</motion.h1>
+                <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-[#556b5d]">院長 鍋島 彰吾 (なべしま しょうご) からのメッセージ</motion.p>
             </div>
 
-            <div className="container mx-auto px-4 max-w-4xl py-16 md:py-24">
-                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4] flex flex-col md:flex-row gap-10 items-start">
+            <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="container mx-auto px-4 max-w-4xl py-16 md:py-24">
+                <motion.div variants={fadeInUp} className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4] flex flex-col md:flex-row gap-10 items-start">
                     <div className="w-full md:w-1/3 shrink-0">
                         <div className="aspect-[3/4] bg-[#E8F0E4] rounded-2xl overflow-hidden relative border-4 border-[#FAF9F5] shadow-sm">
-                            <Image src="/placeholder-director.jpg" alt="院長 鍋島彰吾" fill className="object-cover" />
+                            <Image src="/director-photo.png" alt="院長 鍋島彰吾" fill className="object-cover" />
                         </div>
                         <div className="text-center mt-6">
                             <p className="text-xs text-[#556b5d] font-bold">中央カイロプラクティック院 枚方</p>
@@ -42,8 +60,8 @@ export default function ConceptPage() {
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </div>
     );
 }

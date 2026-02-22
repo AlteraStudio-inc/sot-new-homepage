@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, Bird } from "lucide-react";
+import * as motion from "framer-motion/client";
 
 export const dynamic = "force-dynamic";
 
@@ -10,16 +11,26 @@ export default async function FaqPage() {
         orderBy: { created_at: 'asc' },
     });
 
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    };
+
     return (
-        <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35]">
+        <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35] overflow-hidden">
             <div className="bg-[#E8F0E4] py-16 md:py-24 text-center relative overflow-hidden">
-                <Bird className="absolute bottom-10 right-10 text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply -rotate-12 transform scale-x-[-1]" />
-                <h1 className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4">よくあるご質問</h1>
-                <p className="text-[#556b5d]">患者様から多く寄せられる質問にお答えします。</p>
+                <motion.div animate={{ y: [0, -10, 0], rotate: [12, 15, 12] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute bottom-10 right-10 z-0">
+                    <Bird className="text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply -rotate-12 transform scale-x-[-1]" />
+                </motion.div>
+                <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4">よくあるご質問</motion.h1>
+                <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-[#556b5d]">患者様から多く寄せられる質問にお答えします。</motion.p>
             </div>
 
-            <div className="container mx-auto px-4 max-w-3xl py-16 md:py-24">
-                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4]">
+            <motion.div initial="hidden" animate="visible" variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+            }} className="container mx-auto px-4 max-w-3xl py-16 md:py-24">
+                <motion.div variants={fadeInUp} className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4]">
                     {faqs.length > 0 ? (
                         <Accordion type="single" collapsible className="w-full">
                             {faqs.map((faq) => (
@@ -43,8 +54,8 @@ export default async function FaqPage() {
                             <p>現在、よくある質問は登録されていません。</p>
                         </div>
                     )}
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </div>
     );
 }
