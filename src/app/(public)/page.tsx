@@ -58,7 +58,7 @@ export default function Home() {
         </div>
 
         <div className="container max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10">
-          <div className="flex-1 space-y-6 text-center md:text-left z-10 w-full animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+          <div className="flex-1 space-y-6 text-center md:text-left z-10 w-full animate-slide-in-left" style={{ animationDelay: '100ms' }}>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#2C3E35]">
               枚方市宮之阪の整体<br />
               <span className="text-[#38A182] mt-2 block text-2xl md:text-3xl lg:text-4xl">
@@ -78,7 +78,7 @@ export default function Home() {
               <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-[#38A182]" />駐車場3台有り</span>
             </div>
           </div>
-          <div className="flex-1 w-full max-w-lg relative mt-10 md:mt-0 animate-fade-in" style={{ animationDuration: '0.8s' }}>
+          <div className="flex-1 w-full max-w-lg relative mt-10 md:mt-0 animate-bounce-in" style={{ animationDuration: '1s', animationDelay: '200ms' }}>
             <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl shadow-[#38a182]/20 border-4 border-white/80 relative z-10 group bg-[#E8F0E4]">
               <Image src="/hero-image.png" alt="院の外観" fill className="object-cover group-hover:scale-105 transition-transform duration-700" priority sizes="(max-width: 768px) 100vw, 50vw" />
             </div>
@@ -98,7 +98,7 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-24 bg-[#E8F0E4] px-4">
         <div className="container max-w-5xl mx-auto">
-          <div className="text-center mb-16 relative">
+          <div className="text-center mb-16 relative animate-zoom-in" style={{ animationDelay: '100ms' }}>
             <Leaf className="w-8 h-8 text-[#38A182] mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-[#2C3E35] mb-2">当院が選ばれる5つの特徴</h2>
             <div className="w-16 h-1 bg-[#38A182] mx-auto rounded-full mt-4"></div>
@@ -132,7 +132,7 @@ export default function Home() {
                 icon: <CalendarCheck className="w-8 h-8 text-white" />
               },
             ].map((f, i) => (
-              <div key={i} className="animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+              <div key={i} className="animate-zoom-in" style={{ animationDelay: `${i * 150 + 200}ms` }}>
                 <Card className="border-none rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white overflow-hidden relative group h-full">
                   <CardContent className="p-8 pb-10 flex flex-col items-center text-center h-full">
                     <div className="w-16 h-16 bg-[#38A182] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-md">
@@ -162,7 +162,7 @@ export default function Home() {
         <div className="container max-w-4xl mx-auto space-y-24">
 
           {/* Symptoms */}
-          <div>
+          <div className="animate-slide-in-right" style={{ animationDelay: '150ms' }}>
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-[#2C3E35] mb-4">症状別の施術方法</h2>
               <p className="text-[#556b5d]">これらの他にも様々な治療実績があるので お気軽にお問い合わせください！</p>
@@ -177,7 +177,7 @@ export default function Home() {
           </div>
 
           {/* Plasma Therapy */}
-          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4]">
+          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4] animate-zoom-in" style={{ animationDelay: '200ms' }}>
             <h2 className="text-2xl font-bold text-[#38A182] mb-6 flex items-center gap-2">
               <Sparkles className="w-6 h-6" /> 当院ではプラズマ療法も行っています
             </h2>
@@ -190,7 +190,7 @@ export default function Home() {
           </div>
 
           {/* Patient Voice */}
-          <div>
+          <div className="animate-slide-in-left" style={{ animationDelay: '250ms' }}>
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-[#2C3E35] mb-4 flex items-center justify-center gap-2">
                 <MessageCircle className="text-[#38A182]" /> お喜びの声をご紹介
@@ -223,7 +223,7 @@ export default function Home() {
               <Button asChild size="lg" className="bg-[#38A182] hover:bg-[#2b7a63] text-white rounded-full px-8 h-14 text-lg">
                 <Link href="/reserve"><CalendarCheck className="mr-2 h-5 w-5" /> 24時間ネット予約</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-white/30 hover:bg-white/10 text-white rounded-full px-8 h-14 text-lg">
+              <Button asChild variant="outline" size="lg" className="border-white/30 bg-transparent hover:bg-white/10 text-white rounded-full px-8 h-14 text-lg">
                 <Link href="https://lin.ee/jhGDcuH" target="_blank"><MessageCircle className="mr-2 h-5 w-5" /> LINE予約・相談</Link>
               </Button>
             </div>

@@ -25,7 +25,7 @@ export default async function FaqPage() {
                     {faqs.length > 0 ? (
                         <Accordion type="single" collapsible className="w-full">
                             {faqs.map((faq) => (
-                                <AccordionItem key={faq.id} value={faq.id} className="border-b border-[#E8F0E4] last:border-0 py-2">
+                                <AccordionItem key={faq.id} value={faq.id.toString()} className="border-b border-[#E8F0E4] last:border-0 py-2">
                                     <AccordionTrigger className="text-lg font-bold hover:text-[#38A182] hover:no-underline text-left flex gap-4">
                                         <span className="text-[#38A182] font-serif shrink-0">Q.</span>
                                         <span>{faq.title}</span>

@@ -49,6 +49,67 @@
   --animate-fade-in: fade-in 0.8s ease-out forwards;
   --animate-float: float 4s ease-in-out infinite;
   --animate-float-reverse: float-reverse 5s ease-in-out infinite;
+  --animate-slide-in-left: slide-in-left 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  --animate-slide-in-right: slide-in-right 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  --animate-zoom-in: zoom-in 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  --animate-bounce-in: bounce-in 1s cubic-bezier(0.28, 0.84, 0.42, 1) forwards;
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes fade-in-up {
