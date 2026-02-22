@@ -1,70 +1,47 @@
+import Link from "next/link";
 import Image from "next/image";
+import { Bird, MessageCircle } from "lucide-react";
 
-export default function Concept() {
+export default function ConceptPage() {
     return (
-        <div className="w-full bg-stone-50 min-h-screen py-10 md:py-20">
-            <div className="container mx-auto px-4 max-w-4xl">
-                <div className="text-center mb-16">
-                    <h1 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4">当院の考え方</h1>
-                    <p className="text-stone-600">「一時しのぎ」ではない、「根本改善」を目指す独自のメソッド</p>
-                </div>
+        <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35]">
+            <div className="bg-[#E8F0E4] py-16 md:py-24 text-center relative overflow-hidden">
+                <Bird className="absolute top-10 left-10 text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply rotate-12" />
+                <h1 className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4">院長あいさつ</h1>
+                <p className="text-[#556b5d]">院長 鍋島 彰吾 (なべしま しょうご) からのメッセージ</p>
+            </div>
 
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 flex flex-col md:flex-row mb-12">
-                    <div className="md:w-1/2 relative min-h-[300px]">
-                        <Image
-                            src="/placeholder-concept1.jpg"
-                            alt="丁寧なカウンセリング"
-                            fill
-                            className="object-cover"
-                        />
+            <div className="container mx-auto px-4 max-w-4xl py-16 md:py-24">
+                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4] flex flex-col md:flex-row gap-10 items-start">
+                    <div className="w-full md:w-1/3 shrink-0">
+                        <div className="aspect-[3/4] bg-[#E8F0E4] rounded-2xl overflow-hidden relative border-4 border-[#FAF9F5] shadow-sm">
+                            <Image src="/placeholder-director.jpg" alt="院長 鍋島彰吾" fill className="object-cover" />
+                        </div>
+                        <div className="text-center mt-6">
+                            <p className="text-xs text-[#556b5d] font-bold">中央カイロプラクティック院 枚方</p>
+                            <p className="text-lg font-bold text-[#2C3E35] mt-1">院長 鍋島 彰吾</p>
+                        </div>
                     </div>
-                    <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                        <h2 className="text-2xl font-bold text-emerald-800 mb-4">1. 痛みの「原因」を徹底究明</h2>
-                        <p className="text-stone-700 leading-relaxed">
-                            痛みの出ている場所に原因があるとは限りません。当院では独自の検査法を用い、全身のバランス・関節の動き・生活習慣から痛みの本当の原因を探り出します。
-                        </p>
-                    </div>
-                </div>
 
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 flex flex-col md:flex-row-reverse mb-12">
-                    <div className="md:w-1/2 relative min-h-[300px]">
-                        <Image
-                            src="/placeholder-concept2.jpg"
-                            alt="痛みの少ない施術"
-                            fill
-                            className="object-cover"
-                        />
+                    <div className="w-full md:w-2/3 space-y-6">
+                        <h2 className="text-2xl font-bold text-[#38A182] border-b pb-4 border-[#E8F0E4] flex items-center gap-2">
+                            <MessageCircle className="w-6 h-6" />はじめまして
+                        </h2>
+                        <div className="text-[#2C3E35] leading-loose space-y-4">
+                            <p>
+                                中央カイロプラクティック院 枚方院長の鍋島です。<br />
+                                私自身も過去に病気やけがで悩まされ、「どこに行ってもよくならない」と悩む方の力になりたいと想いこの道を志しました。
+                            </p>
+                            <p>
+                                患者様の悩みは一人一人違います。<br />
+                                身体の痛みだけでなく、長引く不調や、自律神経の乱れ、心のストレスからくる症状まで、当院では心と身体を一つとして捉え、根本からの改善を目指します。
+                            </p>
+                            <p className="font-bold text-[#38A182]">
+                                お気軽になんでもご相談ください。<br />
+                                あなたの健康と笑顔を、ずっと見守る存在でありたいと願っています。
+                            </p>
+                        </div>
                     </div>
-                    <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                        <h2 className="text-2xl font-bold text-emerald-800 mb-4">2. バキバキしない優しい施術</h2>
-                        <p className="text-stone-700 leading-relaxed">
-                            強い力で押したり、骨を無理に鳴らすような施術は行いません。非常にソフトで安全な刺激を入れることで、人間が本来持っている自然治癒力を最大限に引き出します。
-                        </p>
-                    </div>
-                </div>
-
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 flex flex-col md:flex-row mb-12">
-                    <div className="md:w-1/2 relative min-h-[300px]">
-                        <Image
-                            src="/placeholder-concept3.jpg"
-                            alt="アフターケア指導"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
-                    <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                        <h2 className="text-2xl font-bold text-emerald-800 mb-4">3. 再発させない体づくり</h2>
-                        <p className="text-stone-700 leading-relaxed">
-                            施術が終わったら完了ではありません。正しい姿勢の維持や簡単で効果的なストレッチなど、日常生活でのセルフケアを指導し、「痛みが戻らない体」を一緒につくりあげます。
-                        </p>
-                    </div>
-                </div>
-
-                <div className="text-center bg-emerald-50 rounded-2xl p-8 md:p-12 border border-emerald-100">
-                    <h3 className="text-xl font-bold text-emerald-900 mb-4">私たちの約束</h3>
-                    <p className="text-stone-700 leading-relaxed mb-0">
-                        私たちは、あなたが痛みや不調によって諦めていた趣味や仕事、健やかな日常を取り戻すために全力を尽くします。少しでも不安なことがあれば、いつでもご相談ください。
-                    </p>
                 </div>
             </div>
         </div>

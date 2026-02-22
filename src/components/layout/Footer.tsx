@@ -1,54 +1,48 @@
 import Link from "next/link";
+import { MapPin, Clock, Phone } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="bg-stone-900 text-stone-300 py-12 md:py-16 pt-20">
-            <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div className="md:col-span-1">
-                    <h2 className="text-xl font-bold text-white mb-4">整体院名</h2>
-                    <p className="text-sm leading-relaxed text-stone-400 mb-4">
-                        〒000-0000<br />
-                        東京都渋谷区〇〇 1-2-3<br />
-                        〇〇ビル 1F
-                    </p>
-                    <p className="text-sm text-stone-400">
-                        TEL: 03-0000-0000<br />
-                        営業時間: 9:00 - 20:00<br />
-                        定休日: 日曜日
-                    </p>
+        <footer className="bg-[#2C3E35] text-[#A2CBB5] py-12">
+            <div className="container mx-auto px-4 max-w-5xl">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div className="md:col-span-2 space-y-4">
+                        <h3 className="text-xl font-bold text-white tracking-widest leading-relaxed">
+                            中央カイロプラクティック院 枚方院
+                        </h3>
+                        <p className="text-sm">もっと身近に ずっと見守る 心と身体の健康相談室</p>
+                        <div className="space-y-2 text-sm mt-4">
+                            <p className="flex items-center gap-2">
+                                <MapPin className="h-4 w-4 text-[#38A182]" />
+                                〒573-0022 大阪府枚方市宮之阪3丁目5-40
+                            </p>
+                            <p className="flex items-center gap-2">
+                                <Phone className="h-4 w-4 text-[#38A182]" />
+                                072-840-7798
+                            </p>
+                            <p className="flex items-center gap-2">
+                                <Clock className="h-4 w-4 text-[#38A182]" />
+                                営業時間: 9:30-12:30 / 15:30-19:00
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 className="font-bold text-white mb-4">コンテンツ</h4>
+                        <ul className="space-y-2 text-sm">
+                            <li><Link href="/" className="hover:text-white transition-colors">トップページ</Link></li>
+                            <li><Link href="/concept" className="hover:text-white transition-colors">院長あいさつ</Link></li>
+                            <li><Link href="/service" className="hover:text-white transition-colors">施術案内</Link></li>
+                            <li><Link href="/menu" className="hover:text-white transition-colors">料金表</Link></li>
+                            <li><Link href="/faq" className="hover:text-white transition-colors">よくあるご質問</Link></li>
+                            <li><Link href="/access" className="hover:text-white transition-colors">アクセス</Link></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div className="md:col-span-1">
-                    <h3 className="font-bold text-white mb-4">メニュー</h3>
-                    <ul className="space-y-2 text-sm">
-                        <li><Link href="/" className="hover:text-white transition-colors">トップページ</Link></li>
-                        <li><Link href="/about" className="hover:text-white transition-colors">はじめての方へ</Link></li>
-                        <li><Link href="/concept" className="hover:text-white transition-colors">当院の考え方</Link></li>
-                        <li><Link href="/symptoms" className="hover:text-white transition-colors">症状別コラム</Link></li>
-                    </ul>
+                <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+                    <p>&copy; {new Date().getFullYear()} 中央カイロプラクティック院 枚方本院. All rights reserved.</p>
                 </div>
-
-                <div className="md:col-span-1">
-                    <h3 className="font-bold text-white mb-4">ご案内</h3>
-                    <ul className="space-y-2 text-sm">
-                        <li><Link href="/menu" className="hover:text-white transition-colors">料金表</Link></li>
-                        <li><Link href="/reviews" className="hover:text-white transition-colors">患者様の声</Link></li>
-                        <li><Link href="/faq" className="hover:text-white transition-colors">よくある質問</Link></li>
-                        <li><Link href="/access" className="hover:text-white transition-colors">アクセス・地図</Link></li>
-                    </ul>
-                </div>
-
-                <div className="md:col-span-1">
-                    <h3 className="font-bold text-white mb-4">規約等</h3>
-                    <ul className="space-y-2 text-sm">
-                        <li><Link href="/privacy" className="hover:text-white transition-colors">プライバシーポリシー</Link></li>
-                        <li><Link href="/terms" className="hover:text-white transition-colors">利用規約</Link></li>
-                        <li><Link href="/law" className="hover:text-white transition-colors">特定商取引法に基づく表記</Link></li>
-                    </ul>
-                </div>
-            </div>
-            <div className="container mx-auto px-4 mt-12 pt-8 border-t border-stone-800 text-center text-sm text-stone-500">
-                &copy; {new Date().getFullYear()} 整体院名 All Rights Reserved.
             </div>
         </footer>
     );

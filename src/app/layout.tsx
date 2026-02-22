@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { M_PLUS_Rounded_1c } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
-const notoSansJP = Noto_Sans_JP({
+const mPlusRounded = M_PLUS_Rounded_1c({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
-  variable: "--font-noto-sans-jp",
+  variable: "--font-m-plus-rounded",
 });
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | 整体院名",
-    default: "整体院名 | ご予約はこちら",
+    template: "%s | 中央カイロプラクティック院 枚方院",
+    default: "中央カイロプラクティック院 枚方院 | 枚方市宮之阪の整体 GAS脳幹健康センター大阪",
   },
-  description: "心身の不調を根本から整える整体院。初回限定コースあり。Webから24時間予約完了。",
+  description: "もっと身近に ずっと見守る 心と身体の健康相談室。ボキボキしない安心・安全な施術で痛みの根本原因を解消します。",
   openGraph: {
-    title: "整体院名 | 根本改善を目指す本物の整体",
-    description: "長年の痛みや不調を本来のあなたへ戻す場所。丁寧な問診と独自の検査で原因を特定します。",
+    title: "中央カイロプラクティック院 枚方院",
+    description: "もっと身近に ずっと見守る 心と身体の健康相談室。ボキボキしない安心・安全な施術で痛みの根本原因を解消します。",
     url: "https://example.com",
     siteName: "整体院名",
     images: [
@@ -46,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className="scroll-smooth">
-      <body className={`${notoSansJP.variable} font-sans antialiased text-stone-800 bg-stone-50`}>
+      <body className={`${mPlusRounded.variable} font-sans antialiased text-[#2C3E35] bg-[#FAF9F5]`}>
         {children}
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />

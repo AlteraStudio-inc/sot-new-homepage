@@ -1,42 +1,45 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
 
 export default function Header() {
     return (
-        <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-stone-200">
-            <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                    <Link href="/" className="text-xl font-bold tracking-tight text-stone-900">
-                        整体院名
-                    </Link>
-                </div>
+        <header className="sticky top-0 z-50 w-full border-b border-[#E8F0E4] bg-[#FAF9F5]/90 backdrop-blur supports-[backdrop-filter]:bg-[#FAF9F5]/60 text-[#2C3E35]">
+            <div className="container mx-auto max-w-5xl flex h-16 items-center justify-between px-4">
+                {/* Logo */}
+                <Link href="/" className="flex flex-col items-start gap-1 lg:gap-2">
+                    <span className="text-[10px] md:text-xs text-[#556b5d] tracking-wider leading-none">枚方市宮之阪の整体 GAS脳幹健康センター大阪</span>
+                    <span className="font-bold text-base md:text-lg leading-none text-[#38A182]">中央カイロプラクティック院 枚方院</span>
+                </Link>
 
-                <nav className="hidden md:flex items-center space-x-6">
-                    <Link href="/about" className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors">
-                        はじめての方へ
+                {/* Desktop Navigation */}
+                <nav className="hidden md:flex items-center gap-6 text-sm font-bold text-[#556b5d]">
+                    <Link href="/concept" className="hover:text-[#38A182] transition-colors">
+                        院長あいさつ
                     </Link>
-                    <Link href="/menu" className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors">
-                        料金・メニュー
+                    <Link href="/service" className="hover:text-[#38A182] transition-colors">
+                        施術案内
                     </Link>
-                    <Link href="/faq" className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors">
-                        よくある質問
+                    <Link href="/menu" className="hover:text-[#38A182] transition-colors">
+                        料金表
                     </Link>
-                    <Link href="/access" className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors">
+                    <Link href="/faq" className="hover:text-[#38A182] transition-colors">
+                        よくあるご質問
+                    </Link>
+                    <Link href="/access" className="hover:text-[#38A182] transition-colors">
                         アクセス
                     </Link>
+                    <Button asChild className="bg-[#38A182] hover:bg-[#2b7a63] text-white rounded-full px-6 shadow-sm">
+                        <Link href="/reserve">Web予約</Link>
+                    </Button>
                 </nav>
 
-                <div className="hidden md:flex items-center space-x-4">
-                    <span className="text-sm font-bold text-stone-800">03-0000-0000</span>
-                    <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-6">
-                        <Link href="/reserve">Web予約する</Link>
+                {/* Mobile menu button (Simplified for this example) */}
+                <div className="md:hidden flex items-center">
+                    <Button variant="ghost" size="icon" className="text-[#38A182]" aria-label="Menu">
+                        <Menu className="h-6 w-6" />
                     </Button>
                 </div>
-
-                {/* Mobile Menu Button - can be fully implemented later */}
-                <button className="md:hidden p-2 text-stone-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
-                </button>
             </div>
         </header>
     );

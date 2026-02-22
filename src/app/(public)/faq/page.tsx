@@ -1,66 +1,48 @@
 import { prisma } from "@/lib/prisma";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { HelpCircle, Bird } from "lucide-react";
 
-export default async function FAQPage() {
+export const dynamic = "force-dynamic";
+
+export default async function FaqPage() {
     const faqs = await prisma.content.findMany({
-        where: { type: "faq", is_published: true },
-        orderBy: { created_at: "asc" },
+        where: { type: 'faq', is_published: true },
+        orderBy: { created_at: 'asc' },
     });
 
-    // Provide some default dummy FAQs if db is empty
-    const displayFaqs = faqs.length > 0 ? faqs : [
-        { id: "1", title: "健康保険は使えますか？", content: "いいえ、当院の施術はすべて自費診療となっております。保険の制限にとらわれず、根本からの改善を目指すために十分な時間と技術を提供するためです。" },
-        { id: "2", title: "バキバキ鳴らすような施術ですか？", content: "いいえ、非常にソフトで痛みのない施術です。女性やご高齢の方、お子様でも安心して受けていただけます。" },
-        { id: "3", title: "予約は必要ですか？", content: "はい、当院は「完全予約制」となっております。本サイトのWeb予約、もしくはお電話・LINEよりご予約の上ご来院ください。" },
-        { id: "4", title: "駐車場はありますか？", content: "院の前に専用駐車場を3台分ご用意しております。自転車・バイク駐輪場もございます。" },
-    ];
-
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: displayFaqs.map(faq => ({
-            "@type": "Question",
-            name: faq.title,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.content
-            }
-        }))
-    };
-
     return (
-        <div className="w-full bg-stone-50 min-h-screen py-10 md:py-20">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-            <div className="container mx-auto px-4 max-w-3xl">
-                <div className="text-center mb-16">
-                    <h1 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4">よくある質問</h1>
-                    <p className="text-stone-600">皆様からよくお寄せいただくご質問と回答をまとめました。</p>
-                </div>
+        <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35]">
+            <div className="bg-[#E8F0E4] py-16 md:py-24 text-center relative overflow-hidden">
+                <Bird className="absolute bottom-10 right-10 text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply -rotate-12 transform scale-x-[-1]" />
+                <h1 className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4">よくあるご質問</h1>
+                <p className="text-[#556b5d]">患者様から多く寄せられる質問にお答えします。</p>
+            </div>
 
-                <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-6 md:p-10">
-                    <Accordion type="multiple" className="w-full">
-                        {displayFaqs.map((faq) => (
-                            <AccordionItem key={faq.id} value={faq.id} className="border-stone-200 px-2">
-                                <AccordionTrigger className="text-left font-bold text-stone-800 hover:text-emerald-700 md:text-lg">
-                                    <span className="flex items-start">
-                                        <span className="text-emerald-600 font-black mr-3">Q.</span>
-                                        {faq.title}
-                                    </span>
-                                </AccordionTrigger>
-                                <AccordionContent className="text-stone-700 bg-stone-50/50 p-4 rounded-lg mt-2 mb-4 leading-relaxed whitespace-pre-wrap flex items-start">
-                                    <span className="text-emerald-600/60 font-black mr-3 text-lg leading-none mt-0.5">A.</span>
-                                    <div>{faq.content}</div>
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
-                </div>
-
-                <div className="mt-12 text-center text-stone-600 text-sm">
-                    ここにある質問以外に気になることがございましたら、<br className="md:hidden" />お気軽にお問い合わせください。
+            <div className="container mx-auto px-4 max-w-3xl py-16 md:py-24">
+                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4]">
+                    {faqs.length > 0 ? (
+                        <Accordion type="single" collapsible className="w-full">
+                            {faqs.map((faq) => (
+                                <AccordionItem key={faq.id} value={faq.id} className="border-b border-[#E8F0E4] last:border-0 py-2">
+                                    <AccordionTrigger className="text-lg font-bold hover:text-[#38A182] hover:no-underline text-left flex gap-4">
+                                        <span className="text-[#38A182] font-serif shrink-0">Q.</span>
+                                        <span>{faq.title}</span>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-[#556b5d] leading-loose text-base pb-6 pt-2 pl-8 flex gap-4">
+                                        <span className="text-[#d97706] font-serif shrink-0 font-bold">A.</span>
+                                        <div>
+                                            <div dangerouslySetInnerHTML={{ __html: faq.content }} />
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
+                    ) : (
+                        <div className="text-center text-[#556b5d] py-10">
+                            <HelpCircle className="w-12 h-12 mx-auto mb-4 text-[#A2Cbb5] opacity-50" />
+                            <p>現在、よくある質問は登録されていません。</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

@@ -20,28 +20,28 @@ async function main() {
     await prisma.menu.createMany({
         data: [
             {
-                name: '【初回限定】全身整体コース(検査＋施術)',
-                description: '初めての方はこちらをお選びください。根本原因を見つけるため丁寧な検査を行います。',
-                price: 6000,
+                name: "初回検査＋SOT整体＋脳幹療法",
+                description: "初回はカウンセリング込みで60分程度。初回検査料と施術料が含まれます。",
+                price: 8800,
                 duration_minutes: 60,
                 target: 'first_time',
                 is_active: true,
                 order: 1,
             },
             {
-                name: '【2回目以降】通常整体コース',
-                description: '2回目以降の方はこちら。',
-                price: 5000,
+                name: "SOT整体＋脳幹療法（2回目以降）",
+                description: "2回目以降の基本となる施術です。ソフトで痛みのない施術で心と身体を整えます。",
+                price: 6600,
                 duration_minutes: 40,
                 target: 'returning',
                 is_active: true,
                 order: 2,
             },
             {
-                name: '産後骨盤矯正コース',
-                description: '産後2ヶ月～の方限定の特別なコースです。',
-                price: 6500,
-                duration_minutes: 40,
+                name: "小学生以下のお子さん（SOT整体＋脳幹療法）",
+                description: "小学生以下のお子さんへの施術です。",
+                price: 5500,
+                duration_minutes: 30,
                 target: 'both',
                 is_active: true,
                 order: 3,
@@ -49,15 +49,20 @@ async function main() {
         ]
     })
 
-    // Create Business Hours (Monday to Saturday 9:00 - 20:00, Sunday closed)
+    // Create Business Hours (Mon-Sat 9:30-12:30 / 15:30-19:00, Sun, Wed afternoon, Thu, Hol = closed)
+    // Wait, sot.jp says:
+    // 営業時間: 9:30～12:30 / 15:30～19:00
+    // 定休日: 日・祝・木・水曜午後
+
     await prisma.businessHour.deleteMany()
     const hours = []
     for (let i = 0; i <= 6; i++) {
         hours.push({
             day_of_week: i,
-            open_time: '09:00',
-            close_time: '20:00',
-            is_closed: i === 0, // Sunday closed
+            // Format: "09:30" and "19:00"
+            open_time: '09:30',
+            close_time: i === 3 ? '12:30' : '19:00', // Wed closes at 12:30
+            is_closed: (i === 0 || i === 4), // Sun(0) and Thu(4) are closed
         })
     }
     await prisma.businessHour.createMany({ data: hours })
