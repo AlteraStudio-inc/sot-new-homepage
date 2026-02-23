@@ -36,7 +36,7 @@ export default function Footer() {
                             <li><Link href="/concept" className="hover:text-white transition-colors">院長あいさつ</Link></li>
                             <li><Link href="/service" className="hover:text-white transition-colors">施術案内</Link></li>
                             <li><Link href="/menu" className="hover:text-white transition-colors">料金表</Link></li>
-                            <li><Link href="/faq" className="hover:text-white transition-colors">よくあるご質問</Link></li>
+                            <li><Link href="/reviews" className="hover:text-white transition-colors">お客様の声</Link></li>
                             <li><Link href="/access" className="hover:text-white transition-colors">アクセス</Link></li>
                         </ul>
                     </div>

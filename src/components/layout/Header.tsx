@@ -27,8 +27,8 @@ export default function Header() {
                     <Link href="/menu" className="hover:text-[#38A182] transition-colors">
                         料金表
                     </Link>
-                    <Link href="/faq" className="hover:text-[#38A182] transition-colors">
-                        よくあるご質問
+                    <Link href="/reviews" className="hover:text-[#38A182] transition-colors">
+                        お客様の声
                     </Link>
                     <Link href="/access" className="hover:text-[#38A182] transition-colors">
                         アクセス
