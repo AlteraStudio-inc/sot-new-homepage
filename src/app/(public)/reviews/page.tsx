@@ -1,16 +1,26 @@
-import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Bird, MessageCircle, User, CalendarCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 
-export const dynamic = "force-dynamic";
-
-export default async function ReviewsPage() {
-    const reviews = await prisma.content.findMany({
-        where: { type: 'review', is_published: true },
-        orderBy: { created_at: 'desc' },
-    });
+export default function ReviewsPage() {
+    const reviews = [
+        {
+            id: '1',
+            title: '「長年の肩こりがスッキリしました！」',
+            content: '最初は少し不安でしたが、丁寧なカウンセリングと痛みのない施術でとてもリラックスできました。終わった後は驚くほど体が軽く、もっと早く来ればよかったと思いました。<br /><br /><span class="text-sm font-bold text-[#38A182]">（30代 女性）</span>',
+        },
+        {
+            id: '2',
+            title: '「自律神経の乱れが改善してよく眠れるように」',
+            content: '首の張りからくる不眠に悩んでいましたが、何度か通ううちに朝までぐっすり眠れるようになりました。バキバキしない優しい施術なので毎回心地よく受けられます。<br /><br /><span class="text-sm font-bold text-[#38A182]">（40代 男性）</span>',
+        },
+        {
+            id: '3',
+            title: '「産後の骨盤矯正で通っています」',
+            content: '産後の腰の痛みがひどく駆け込みましたが、数回で痛みがなくなり家事も楽になりました。院内の雰囲気も落ち着いていて通いやすいです。<br /><br /><span class="text-sm font-bold text-[#38A182]">（20代 女性）</span>',
+        }
+    ];
 
     return (
         <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35] overflow-hidden">
