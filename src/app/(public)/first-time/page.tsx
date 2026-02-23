@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { CalendarCheck, ChevronRight, HelpCircle, JapaneseYen } from "lucide-react";
+import { CalendarCheck, ChevronRight, MessageCircleHeart, JapaneseYen } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
@@ -77,24 +77,24 @@ export default function About() {
 
                     <section className="bg-white rounded-2xl shadow-sm p-6 md:p-10 mb-8 border border-stone-100">
                         <h2 className="text-2xl font-bold text-[#38A182] mb-6 border-b border-[#E8F0E4] pb-4 flex items-center gap-2">
-                            <HelpCircle className="w-6 h-6" /> よくあるご質問
+                            <MessageCircleHeart className="w-6 h-6" /> お客様の声
                         </h2>
                         <div className="space-y-4 text-stone-700">
-                            <div className="border-b border-stone-100 pb-4">
-                                <p className="font-bold flex gap-2"><span className="text-[#38A182]">Q.</span> 痛い施術はしますか？</p>
-                                <p className="mt-2 text-sm leading-relaxed text-stone-600 flex gap-2"><span className="text-[#d97706] font-bold">A.</span> ボキボキしないソフトな施術ですので、痛みはほとんどありません。お子様からご高齢の方まで安心して受けていただけます。</p>
+                            <div className="border border-stone-100 bg-stone-50 p-4 rounded-xl">
+                                <p className="font-bold flex gap-2">「長年の肩こりがスッキリしました！」</p>
+                                <p className="mt-2 text-sm leading-relaxed text-stone-600">最初は少し不安でしたが、丁寧なカウンセリングと痛みのない施術でとてもリラックスできました。終わった後は驚くほど体が軽く、もっと早く来ればよかったと思いました。（30代 女性）</p>
                             </div>
-                            <div className="border-b border-stone-100 pb-4">
-                                <p className="font-bold flex gap-2"><span className="text-[#38A182]">Q.</span> 健康保険は使えますか？</p>
-                                <p className="mt-2 text-sm leading-relaxed text-stone-600 flex gap-2"><span className="text-[#d97706] font-bold">A.</span> 完全自費診療となりますので、健康保険はご利用いただけません。根本改善を目的とした質の高い施術を提供しております。</p>
+                            <div className="border border-stone-100 bg-stone-50 p-4 rounded-xl">
+                                <p className="font-bold flex gap-2">「自律神経の乱れが改善してよく眠れるように」</p>
+                                <p className="mt-2 text-sm leading-relaxed text-stone-600">首の張りからくる不眠に悩んでいましたが、何度か通ううちに朝までぐっすり眠れるようになりました。バキバキしない優しい施術なので毎回心地よく受けられます。（40代 男性）</p>
                             </div>
-                            <div className="border-b border-stone-100 pb-4">
-                                <p className="font-bold flex gap-2"><span className="text-[#38A182]">Q.</span> 駐車場はありますか？</p>
-                                <p className="mt-2 text-sm leading-relaxed text-stone-600 flex gap-2"><span className="text-[#d97706] font-bold">A.</span> はい、院の前に専用駐車場を3台完備しております。</p>
+                            <div className="border border-stone-100 bg-stone-50 p-4 rounded-xl">
+                                <p className="font-bold flex gap-2">「産後の骨盤矯正で通っています」</p>
+                                <p className="mt-2 text-sm leading-relaxed text-stone-600">産後の腰の痛みがひどく駆け込みましたが、数回で痛みがなくなり家事も楽になりました。院内の雰囲気も落ち着いていて通いやすいです。（20代 女性）</p>
                             </div>
                             <div className="text-center pt-4">
                                 <Button variant="outline" asChild className="text-[#38A182] border-[#38A182] hover:bg-[#E8F0E4]">
-                                    <Link href="/faq">もっとよくある質問を見る <ChevronRight className="ml-1 w-4 h-4" /></Link>
+                                    <Link href="/reviews">もっとお客様の声を見る <ChevronRight className="ml-1 w-4 h-4" /></Link>
                                 </Button>
                             </div>
                         </div>

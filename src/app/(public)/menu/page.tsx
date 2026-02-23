@@ -1,18 +1,9 @@
-import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { CalendarCheck, ChevronRight, Check, AlertCircle, Bird } from "lucide-react";
+import { CalendarCheck, Check, AlertCircle, Bird } from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
-export default async function MenuPage() {
-    // Fetch all menus including inactive ones to handle "stopped" status properly.
-    const menus = await prisma.menu.findMany({
-        orderBy: { order: 'asc' },
-    });
-
-    const firstTimeMenus = menus.filter(m => m.target === 'first_time' || m.target === 'both');
-    const returningMenus = menus.filter(m => m.target === 'returning' || m.target === 'both');
+export default function MenuPage() {
 
     return (
         <div className="w-full bg-[#FAF9F5] min-h-screen text-[#2C3E35] overflow-hidden">
@@ -27,93 +18,56 @@ export default async function MenuPage() {
 
             <div className="container mx-auto px-4 max-w-4xl py-16 md:py-24 space-y-24">
 
-                {/* 初回メニュー */}
-                {firstTimeMenus.length > 0 && (
-                    <section className="animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-                        <div className="text-center mb-12">
-                            <h2 className="text-2xl font-bold text-[#38A182] mb-2 flex items-center justify-center gap-2">
-                                <span className="w-8 h-1 bg-[#38A182] rounded-full"></span>
-                                初めての方
-                                <span className="w-8 h-1 bg-[#38A182] rounded-full"></span>
-                            </h2>
-                        </div>
-                        <div className="space-y-6">
-                            {firstTimeMenus.map(m => (
-                                <div key={m.id} className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4] relative group transition-all hover:border-[#38A182] hover:shadow-md">
-                                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#E8F0E4] pb-4 mb-4">
-                                        <div className="w-full md:w-2/3">
-                                            <h3 className="text-xl md:text-2xl font-bold text-[#2C3E35] flex items-center gap-2">
-                                                {m.name}
-                                                {!m.is_active && <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full whitespace-nowrap">現在提供していません</span>}
-                                            </h3>
-                                        </div>
-                                        <div className="text-right w-full md:w-auto shrink-0 flex flex-col items-end">
-                                            {m.price > 0 ? (
-                                                <span className="text-2xl md:text-3xl font-bold text-[#38A182]">
-                                                    {m.price.toLocaleString()}円<span className="text-sm text-[#556b5d] font-normal">（税込）</span>
-                                                </span>
-                                            ) : (
-                                                <span className="text-lg font-bold text-[#556b5d]">準備中</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <div className="space-y-3">
-                                        <p className="text-[#2C3E35] font-medium border-l-4 border-[#38A182] pl-3 leading-relaxed">
-                                            {m.description || "症状に合わせた最適な施術をご提案します。"}
-                                        </p>
-                                        <p className="text-sm text-[#556b5d] bg-[#FAF9F5] inline-block px-3 py-1.5 rounded-lg font-bold">
-                                            目安時間: 約{m.duration_minutes > 0 ? `${m.duration_minutes}分` : "60分（カウンセリング含む）"}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
+                <section className="animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+                    <div className="text-center mb-12">
+                        <h2 className="text-2xl font-bold text-[#38A182] mb-2 flex items-center justify-center gap-2">
+                            <span className="w-8 h-1 bg-[#38A182] rounded-full"></span>
+                            施術料金
+                            <span className="w-8 h-1 bg-[#38A182] rounded-full"></span>
+                        </h2>
+                        <p className="text-stone-600 mt-4">当院は完全自費診療となります。</p>
+                    </div>
 
-                {/* 2回目以降メニュー */}
-                {returningMenus.length > 0 && (
-                    <section className="animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-                        <div className="text-center mb-12 mt-16">
-                            <h2 className="text-2xl font-bold text-[#38A182] mb-2 flex items-center justify-center gap-2">
-                                <span className="w-8 h-1 bg-[#38A182] rounded-full"></span>
-                                2回目以降の方
-                                <span className="w-8 h-1 bg-[#38A182] rounded-full"></span>
-                            </h2>
+                    <div className="bg-white rounded-[2rem] p-6 md:p-12 shadow-sm border border-[#E8F0E4]">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse min-w-[600px]">
+                                <thead>
+                                    <tr className="border-b-2 border-[#38A182]">
+                                        <th className="py-4 px-4 text-[#2C3E35] font-bold w-1/2">コース名</th>
+                                        <th className="py-4 px-4 text-[#2C3E35] font-bold w-1/4">目安時間</th>
+                                        <th className="py-4 px-4 text-[#2C3E35] font-bold text-right w-1/4">料金（税込）</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-b border-[#E8F0E4] hover:bg-[#FAF9F5] transition-colors">
+                                        <td className="py-6 px-4">
+                                            <div className="font-bold text-lg text-[#2C3E35] mb-2">初回検査 ＋ SOT整体・脳幹療法</div>
+                                            <div className="text-sm text-[#556b5d]">痛みや不調の根本原因を見つけるため、初回は丁寧なカウンセリングと検査を行います。<br />※初回検査料と施術料が含まれます。</div>
+                                        </td>
+                                        <td className="py-6 px-4 text-[#2C3E35] font-medium">約60分</td>
+                                        <td className="py-6 px-4 text-2xl font-bold text-[#38A182] text-right">8,800<span className="text-base">円</span></td>
+                                    </tr>
+                                    <tr className="border-b border-[#E8F0E4] hover:bg-[#FAF9F5] transition-colors">
+                                        <td className="py-6 px-4">
+                                            <div className="font-bold text-lg text-[#2C3E35] mb-2">SOT整体・脳幹療法（2回目以降）</div>
+                                            <div className="text-sm text-[#556b5d]">2回目以降の基本となる施術です。ソフトでバキバキしない痛みのない施術で心と身体を整えます。</div>
+                                        </td>
+                                        <td className="py-6 px-4 text-[#2C3E35] font-medium">約40分</td>
+                                        <td className="py-6 px-4 text-2xl font-bold text-[#38A182] text-right">6,600<span className="text-base">円</span></td>
+                                    </tr>
+                                    <tr className="hover:bg-[#FAF9F5] transition-colors">
+                                        <td className="py-6 px-4">
+                                            <div className="font-bold text-lg text-[#2C3E35] mb-2">小学生以下のお子さん</div>
+                                            <div className="text-sm text-[#556b5d]">小学生以下のお子さん専用の、体の負担が少ないSOT整体＋脳幹療法の特別コースです。</div>
+                                        </td>
+                                        <td className="py-6 px-4 text-[#2C3E35] font-medium">約30分</td>
+                                        <td className="py-6 px-4 text-2xl font-bold text-[#38A182] text-right">5,500<span className="text-base">円</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div className="space-y-6">
-                            {returningMenus.map(m => (
-                                <div key={m.id} className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4] relative group transition-all hover:border-[#38A182] hover:shadow-md">
-                                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#E8F0E4] pb-4 mb-4">
-                                        <div className="w-full md:w-2/3">
-                                            <h3 className="text-xl md:text-2xl font-bold text-[#2C3E35] flex items-center gap-2">
-                                                {m.name}
-                                                {!m.is_active && <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full whitespace-nowrap">現在提供していません</span>}
-                                            </h3>
-                                        </div>
-                                        <div className="text-right w-full md:w-auto shrink-0 flex flex-col items-end">
-                                            {m.price > 0 ? (
-                                                <span className="text-2xl md:text-3xl font-bold text-[#38A182]">
-                                                    {m.price.toLocaleString()}円<span className="text-sm text-[#556b5d] font-normal">（税込）</span>
-                                                </span>
-                                            ) : (
-                                                <span className="text-lg font-bold text-[#556b5d]">準備中</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <div className="space-y-3">
-                                        <p className="text-[#2C3E35] leading-relaxed">
-                                            {m.description || "前回のご来院からの経過を伺い、最適な施術を行います。"}
-                                        </p>
-                                        <p className="text-sm text-[#556b5d] bg-[#FAF9F5] inline-block px-3 py-1.5 rounded-lg">
-                                            目安時間: 約{m.duration_minutes > 0 ? `${m.duration_minutes}分` : "30分〜40分"}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
+                    </div>
+                </section>
 
                 {/* 初めての方へ */}
                 <section className="animate-fade-in-up" style={{ animationDelay: '300ms' }}>
