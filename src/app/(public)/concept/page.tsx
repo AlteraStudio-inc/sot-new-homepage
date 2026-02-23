@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Bird, MessageCircle } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export default function ConceptPage() {
     return (
@@ -20,7 +21,7 @@ export default function ConceptPage() {
                             <Image src="/director-photo.png" alt="院長 鍋島彰吾" fill className="object-cover" />
                         </div>
                         <div className="text-center mt-6">
-                            <p className="text-xs text-[#556b5d] font-bold">中央カイロプラクティック院 枚方</p>
+                            <p className="text-xs text-[#556b5d] font-bold">{siteConfig.name}</p>
                             <p className="text-lg font-bold text-[#2C3E35] mt-1">院長 鍋島 彰吾</p>
                         </div>
                     </div>
@@ -31,7 +32,7 @@ export default function ConceptPage() {
                         </h2>
                         <div className="text-[#2C3E35] leading-loose space-y-4">
                             <p>
-                                中央カイロプラクティック院 枚方院長の鍋島です。<br />
+                                {siteConfig.name}長の鍋島です。<br />
                                 私自身も過去に病気やけがで悩まされ、「どこに行ってもよくならない」と悩む方の力になりたいと想いこの道を志しました。
                             </p>
                             <p>

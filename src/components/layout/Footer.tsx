@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MapPin, Clock, Phone } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export default function Footer() {
     return (
@@ -8,21 +9,21 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="md:col-span-2 space-y-4">
                         <h3 className="text-xl font-bold text-white tracking-widest leading-relaxed">
-                            中央カイロプラクティック院 枚方院
+                            {siteConfig.name}
                         </h3>
-                        <p className="text-sm">もっと身近に ずっと見守る 心と身体の健康相談室</p>
+                        <p className="text-sm">{siteConfig.description.split("。")[0]}</p>
                         <div className="space-y-2 text-sm mt-4">
                             <p className="flex items-center gap-2">
                                 <MapPin className="h-4 w-4 text-[#38A182]" />
-                                〒573-0022 大阪府枚方市宮之阪3丁目5-40
+                                {siteConfig.clinic.address.postal} {siteConfig.clinic.address.text}
                             </p>
                             <p className="flex items-center gap-2">
                                 <Phone className="h-4 w-4 text-[#38A182]" />
-                                072-840-7798
+                                {siteConfig.clinic.phone}
                             </p>
                             <p className="flex items-center gap-2">
                                 <Clock className="h-4 w-4 text-[#38A182]" />
-                                営業時間: 9:30-12:30 / 15:30-19:00
+                                営業時間: {siteConfig.clinic.hours.text}
                             </p>
                         </div>
                     </div>
@@ -31,6 +32,7 @@ export default function Footer() {
                         <h4 className="font-bold text-white mb-4">コンテンツ</h4>
                         <ul className="space-y-2 text-sm">
                             <li><Link href="/" className="hover:text-white transition-colors">トップページ</Link></li>
+                            <li><Link href="/first-time" className="hover:text-white transition-colors">はじめての方へ</Link></li>
                             <li><Link href="/concept" className="hover:text-white transition-colors">院長あいさつ</Link></li>
                             <li><Link href="/service" className="hover:text-white transition-colors">施術案内</Link></li>
                             <li><Link href="/menu" className="hover:text-white transition-colors">料金表</Link></li>
@@ -41,7 +43,7 @@ export default function Footer() {
                 </div>
 
                 <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm">
-                    <p>&copy; {new Date().getFullYear()} 中央カイロプラクティック院 枚方本院. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
                 </div>
             </div>
         </footer>

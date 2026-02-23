@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export default function Header() {
     return (
@@ -9,11 +10,14 @@ export default function Header() {
                 {/* Logo */}
                 <Link href="/" className="flex flex-col items-start gap-1 lg:gap-2">
                     <span className="text-[10px] md:text-xs text-[#556b5d] tracking-wider leading-none">枚方市宮之阪の整体 GAS脳幹健康センター大阪</span>
-                    <span className="font-bold text-base md:text-lg leading-none text-[#38A182]">中央カイロプラクティック院 枚方院</span>
+                    <span className="font-bold text-base md:text-lg leading-none text-[#38A182]">{siteConfig.name}</span>
                 </Link>
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-6 text-sm font-bold text-[#556b5d]">
+                    <Link href="/first-time" className="hover:text-[#38A182] transition-colors">
+                        はじめての方へ
+                    </Link>
                     <Link href="/concept" className="hover:text-[#38A182] transition-colors">
                         院長あいさつ
                     </Link>

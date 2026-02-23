@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
-import { Activity, Bird } from "lucide-react";
+import { Activity, Bird, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -19,16 +20,23 @@ export default async function SymptomsPage() {
 
             <div className="container mx-auto px-4 max-w-4xl py-16 md:py-24">
                 {symptoms.length > 0 ? (
-                    <div className="space-y-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {symptoms.map((symptom) => (
-                            <div key={symptom.id} className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-[#E8F0E4]">
-                                <h2 className="text-2xl font-bold text-[#38A182] mb-6 flex items-center gap-2 border-b border-[#E8F0E4] pb-4">
-                                    <Activity className="w-6 h-6" /> {symptom.title}
-                                </h2>
-                                <div className="text-[#2C3E35] leading-loose text-base">
-                                    <div dangerouslySetInnerHTML={{ __html: symptom.content }} />
+                            <Link key={symptom.id} href={`/symptoms/${symptom.slug || symptom.id}`} className="block group h-full">
+                                <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#E8F0E4] group-hover:shadow-md group-hover:border-[#38A182] transition-all h-full flex flex-col justify-between">
+                                    <div>
+                                        <h2 className="text-xl font-bold text-[#2C3E35] mb-4 flex items-center gap-3">
+                                            <Activity className="w-6 h-6 text-[#38A182]" /> {symptom.title}
+                                        </h2>
+                                        <p className="text-[#556b5d] line-clamp-2 text-sm leading-relaxed mb-6">
+                                            {symptom.content.replace(/<[^>]*>?/gm, '').substring(0, 80)}...
+                                        </p>
+                                    </div>
+                                    <div className="flex items-center justify-end text-[#A2CBB5] group-hover:text-[#38A182] font-bold text-sm transition-colors">
+                                        詳しく見る <ChevronRight className="w-4 h-4 ml-1" />
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 ) : (

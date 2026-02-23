@@ -4,23 +4,24 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Leaf, Bird, MapPin, Clock, Phone, CalendarCheck, CheckCircle2, HeartPulse, Sparkles, Smile, MessageCircle } from "lucide-react";
+import { Leaf, Bird, MapPin, Clock, Phone, CalendarCheck, HeartPulse, Sparkles, Smile, MessageCircle } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "中央カイロプラクティック院 枚方院",
-    image: "https://example.com/ogp.jpg",
-    "@id": "https://www.sot.jp",
-    url: "https://www.sot.jp",
-    telephone: "072-840-7798",
+    name: siteConfig.name,
+    image: `${siteConfig.url}${siteConfig.ogImage}`,
+    "@id": siteConfig.url,
+    url: siteConfig.url,
+    telephone: siteConfig.clinic.phone,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "宮之阪3丁目5-40",
+      streetAddress: siteConfig.clinic.address.text,
       addressLocality: "枚方市",
       addressRegion: "大阪府",
-      postalCode: "573-0022",
+      postalCode: siteConfig.clinic.address.postal.replace("〒", ""),
       addressCountry: "JP"
     },
     openingHoursSpecification: [
@@ -62,7 +63,7 @@ export default function Home() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#2C3E35]">
               枚方市宮之阪の整体<br />
               <span className="text-[#38A182] mt-2 block text-2xl md:text-3xl lg:text-4xl">
-                中央カイロプラクティック院 枚方院へどうぞ！
+                {siteConfig.name}へどうぞ！
               </span>
             </h1>
             <p className="text-lg text-[#556b5d] font-bold">
@@ -70,12 +71,12 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
               <Button asChild size="lg" className="bg-[#38A182] hover:bg-[#2b7a63] hover:scale-105 transition-all duration-300 text-white rounded-full px-8 h-14 text-lg shadow-lg">
-                <Link href="/reserve"><CalendarCheck className="mr-2 h-5 w-5" /> 【初めての方】ネット予約はこちら</Link>
+                <Link href={siteConfig.links.reserve}><CalendarCheck className="mr-2 h-5 w-5" /> 【初めての方】ネット予約はこちら</Link>
               </Button>
             </div>
             <div className="flex items-center gap-4 text-sm font-medium text-[#556b5d] justify-center md:justify-start">
-              <span className="flex items-center gap-1"><MapPin className="w-4 h-4 text-[#38A182]" />宮之阪駅から徒歩30秒</span>
-              <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-[#38A182]" />駐車場3台有り</span>
+              <span className="flex items-center gap-1"><MapPin className="w-4 h-4 text-[#38A182]" />{siteConfig.clinic.address.access}</span>
+              <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-[#38A182]" />{siteConfig.clinic.parking}</span>
             </div>
           </div>
           <div className="flex-1 w-full max-w-lg relative mt-10 md:mt-0 animate-bounce-in" style={{ animationDuration: '1s', animationDelay: '200ms' }}>
@@ -230,17 +231,17 @@ export default function Home() {
           </div>
 
           <div className="bg-white/5 rounded-2xl p-8 text-left max-w-2xl mx-auto border border-white/10">
-            <h3 className="text-xl font-bold mb-4 text-[#7BB896]">中央カイロプラクティック院 枚方院</h3>
+            <h3 className="text-xl font-bold mb-4 text-[#7BB896]">{siteConfig.name}</h3>
             <div className="space-y-4 text-sm md:text-base text-white/90">
               <p className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#38A182] shrink-0 mt-0.5" />
-                <span>〒573-0022<br />大阪府枚方市宮之阪3丁目5-40<br /><span className="text-[#A2Cbb5] text-xs">京阪電車：宮之阪駅出口から徒歩30秒 / 駐車場：院前に3台有り</span></span>
+                <span>{siteConfig.clinic.address.postal}<br />{siteConfig.clinic.address.text}<br /><span className="text-[#A2Cbb5] text-xs">{siteConfig.clinic.address.access} / {siteConfig.clinic.parking}</span></span>
               </p>
               <p className="flex items-start gap-3">
                 <Clock className="w-5 h-5 text-[#38A182] shrink-0 mt-0.5" />
                 <span>
-                  受付時間：9:30～12:30 / 15:30～19:00<br />
-                  定休日：日・祝・木・水曜午後
+                  受付時間：{siteConfig.clinic.hours.text}<br />
+                  定休日：{siteConfig.clinic.closed}
                 </span>
               </p>
             </div>

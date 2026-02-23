@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { M_PLUS_Rounded_1c } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { siteConfig } from "@/config/site";
 import "./globals.css";
 
 const mPlusRounded = M_PLUS_Rounded_1c({
@@ -11,21 +12,21 @@ const mPlusRounded = M_PLUS_Rounded_1c({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | 中央カイロプラクティック院 枚方院",
-    default: "中央カイロプラクティック院 枚方院 | 枚方市宮之阪の整体 GAS脳幹健康センター大阪",
+    template: `%s | ${siteConfig.name}`,
+    default: `${siteConfig.name} | 枚方市宮之阪の整体 GAS脳幹健康センター大阪`,
   },
-  description: "もっと身近に ずっと見守る 心と身体の健康相談室。ボキボキしない安心・安全な施術で痛みの根本原因を解消します。",
+  description: siteConfig.description,
   openGraph: {
-    title: "中央カイロプラクティック院 枚方院",
-    description: "もっと身近に ずっと見守る 心と身体の健康相談室。ボキボキしない安心・安全な施術で痛みの根本原因を解消します。",
-    url: "https://example.com",
-    siteName: "整体院名",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     images: [
       {
-        url: "https://example.com/ogp.jpg",
+        url: `${siteConfig.url}/ogp.jpg`,
         width: 1200,
         height: 630,
-        alt: "整体院名の院内風景",
+        alt: `${siteConfig.name}の院内風景`,
       },
     ],
     locale: "ja_JP",
@@ -33,9 +34,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "整体院名",
-    description: "心身の不調を根本から整える整体院",
-    images: ["https://example.com/ogp.jpg"],
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}/ogp.jpg`],
   },
 };
 

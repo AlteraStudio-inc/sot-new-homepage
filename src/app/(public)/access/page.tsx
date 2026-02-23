@@ -1,4 +1,5 @@
 import { Bird, MapPin, Clock, Phone, Car } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export default function AccessPage() {
     return (
@@ -8,7 +9,7 @@ export default function AccessPage() {
                     <Bird className="text-[#38A182] w-12 h-12 opacity-80 mix-blend-multiply" />
                 </div>
                 <h1 className="text-3xl md:text-4xl font-bold text-[#2C3E35] mb-4 animate-fade-in-up">アクセス</h1>
-                <p className="text-[#556b5d] animate-fade-in-up" style={{ animationDelay: '100ms' }}>中央カイロプラクティック院 枚方院へのご案内</p>
+                <p className="text-[#556b5d] animate-fade-in-up" style={{ animationDelay: '100ms' }}>{siteConfig.name}へのご案内</p>
             </div>
 
             <div className="container mx-auto px-4 max-w-4xl py-16 md:py-24 space-y-12 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
@@ -20,22 +21,22 @@ export default function AccessPage() {
                             <div className="space-y-4 text-[#2C3E35] leading-loose">
                                 <div>
                                     <p className="font-bold flex items-center gap-2"><MapPin className="text-[#38A182] w-5 h-5" /> 住所</p>
-                                    <p className="ml-7">〒573-0022<br />大阪府枚方市宮之阪3丁目5-40</p>
+                                    <p className="ml-7">{siteConfig.clinic.address.postal}<br />{siteConfig.clinic.address.text}</p>
                                 </div>
                                 <div>
                                     <p className="font-bold flex items-center gap-2"><Phone className="text-[#38A182] w-5 h-5" /> 電話番号</p>
-                                    <p className="ml-7">072-840-7798</p>
+                                    <p className="ml-7">{siteConfig.clinic.phone}</p>
                                 </div>
                                 <div>
                                     <p className="font-bold flex items-center gap-2"><Clock className="text-[#38A182] w-5 h-5" /> 受付時間・定休日</p>
                                     <div className="ml-7 mt-2">
-                                        <p>受付時間：9:30～12:30 / 15:30～19:00</p>
-                                        <p>定休日：<span className="text-red-500 font-bold">日・祝・木・水曜午後</span></p>
+                                        <p>受付時間：{siteConfig.clinic.hours.text}</p>
+                                        <p>定休日：<span className="text-red-500 font-bold">{siteConfig.clinic.closed}</span></p>
                                     </div>
                                 </div>
                                 <div>
                                     <p className="font-bold flex items-center gap-2"><Car className="text-[#38A182] w-5 h-5" /> アクセス</p>
-                                    <p className="ml-7">京阪電車 宮之阪駅出口から徒歩30秒<br />駐車場：院前に3台有り</p>
+                                    <p className="ml-7">{siteConfig.clinic.address.access}<br />{siteConfig.clinic.parking}</p>
                                 </div>
                             </div>
                         </div>
