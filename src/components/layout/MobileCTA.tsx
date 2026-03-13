@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Calendar, Phone, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/config/site";
