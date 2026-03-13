@@ -85,7 +85,7 @@ export default function Home() {
              </p>
 
              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-10 h-16 md:h-18 shadow-xl shadow-primary/20 transition-all hover:scale-105 group">
-                <Link href="/about" className="flex items-center gap-3">
+                <Link href="/concept" className="flex items-center gap-3">
                    <span className="text-sm md:text-base font-bold tracking-widest">当院のポリシー</span>
                    <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center transform group-hover:translate-x-1 transition-transform">
                       <ChevronRight className="w-4 h-4" />
@@ -99,7 +99,7 @@ export default function Home() {
         <div className="absolute bottom-6 left-6 md:bottom-20 md:left-20 z-20 hidden sm:flex items-center gap-4 bg-background/80 backdrop-blur px-6 py-3 rounded-full border border-border/40 shadow-sm animate-slide-in-left">
            <span className="lato text-[11px] font-bold text-primary tracking-widest">2026.02.22</span>
            <div className="w-px h-3 bg-border"></div>
-           <Link href="/news" className="text-[11px] font-bold text-hd-dark-brown hover:text-primary transition-colors">臨時駐車場の変更について</Link>
+           <Link href="/" className="text-[11px] font-bold text-hd-dark-brown hover:text-primary transition-colors">臨時駐車場の変更について</Link>
         </div>
       </section>
 
@@ -140,8 +140,8 @@ export default function Home() {
 
               <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-6">
                  {[
-                   { label: "脳幹療法へのこだわり", href: "/policy/brain" },
-                   { label: "ボキボキしない施術", href: "/policy/soft" },
+                   { label: "脳幹療法へのこだわり", href: "/concept" },
+                   { label: "ボキボキしない施術", href: "/concept" },
                  ].map((item, i) => (
                     <Link key={i} href={item.href} className="flex items-center justify-between p-6 bg-secondary/20 rounded-2xl group border border-transparent hover:border-primary/20 hover:bg-background transition-all">
                        <span className="font-bold text-sm md:text-base text-hd-dark-brown">{item.label}</span>
@@ -167,7 +167,7 @@ export default function Home() {
                  </h2>
               </div>
               <Button asChild variant="link" className="text-primary font-bold lato tracking-widest text-xs hover:no-underline px-0 group">
-                 <Link href="/news" className="flex items-center gap-2">
+                 <Link href="/" className="flex items-center gap-2">
                     VIEW ALL <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                  </Link>
               </Button>
@@ -179,7 +179,7 @@ export default function Home() {
                 { date: "2026.01.15", title: "春の自律神経ケアキャンペーン開始", image: "/news-2.png", category: "イベント" },
                 { date: "2025.12.20", title: "年末年始の営業について", image: "/news-3.png", category: "メンテナンス" },
               ].map((news, i) => (
-                <Link key={i} href="/news/slug" className="group block space-y-6 animate-zoom-in" style={{ animationDelay: `${i * 150}ms` }}>
+                <Link key={i} href="/" className="group block space-y-6 animate-zoom-in" style={{ animationDelay: `${i * 150}ms` }}>
                    <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-lg shadow-black/5 bg-background">
                       <Image src={news.image} alt={news.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                       {/* Floating Date Decoration (Vertical-like) */}
@@ -252,7 +252,7 @@ export default function Home() {
                          <p className="text-sm md:text-base leading-loose text-hd-text-brown opacity-90">
                             {service.desc}
                          </p>
-                         <Link href="/services" className="inline-flex items-center gap-2 text-primary font-bold text-sm tracking-widest border-b-[2px] border-primary/20 pb-1 hover:border-primary transition-all group/btn">
+                         <Link href="/service" className="inline-flex items-center gap-2 text-primary font-bold text-sm tracking-widest border-b-[2px] border-primary/20 pb-1 hover:border-primary transition-all group/btn">
                             LEARN MORE <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
                          </Link>
                       </div>

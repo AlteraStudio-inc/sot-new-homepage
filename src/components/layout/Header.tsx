@@ -18,21 +18,28 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "ホーム", subLabel: "Home", href: "/" },
-  { label: "当院について", subLabel: "About clinic", href: "/about" },
-  { label: "お知らせ", subLabel: "News", href: "/news" },
-  { label: "医師紹介", subLabel: "Doctor", href: "/staff" },
-  { label: "診療案内", subLabel: "Service", href: "/services" },
+  { label: "当院について", subLabel: "About clinic", href: "/concept" },
+  { label: "お知らせ", subLabel: "News", href: "/" }, // Temporarily back to home if no news page
+  { label: "医師紹介", subLabel: "Doctor", href: "/concept" },
+  { label: "診療案内", subLabel: "Service", href: "/service" },
   { label: "アクセス", subLabel: "Access", href: "/access" },
 ];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  if (!mounted) return null; // Prevent hydration mismatch
 
   return (
     <>
