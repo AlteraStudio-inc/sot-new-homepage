@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MapPin, Clock, Phone } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
-export default function Footer() {
+export function Footer() {
     return (
         <footer className="bg-background text-foreground py-16 border-t border-border">
             <div className="container mx-auto px-6 max-w-5xl">

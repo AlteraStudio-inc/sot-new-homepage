@@ -1,6 +1,6 @@
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import MobileCTA from "@/components/layout/MobileCTA";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { MobileCTA } from "@/components/layout/MobileCTA";
 
 export default function PublicLayout({
     children,
