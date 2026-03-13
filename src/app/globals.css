@@ -163,38 +163,44 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --radius: 0.75rem;
+  --background: #FDFBF2; /* Warm Cream background */
+  --foreground: #7A6856; /* Soft Brown-Grey text */
+  --card: #FDFBF2;
+  --card-foreground: #7A6856;
+  --popover: #FDFBF2;
+  --popover-foreground: #7A6856;
+  --primary: #92B600; /* Leaf Green accent */
+  --primary-foreground: #FFFFFF;
+  --secondary: #E8F0E4; /* Very soft green/cream */
+  --secondary-foreground: #5B4023;
+  --muted: #F2F0E6;
+  --muted-foreground: #A39385;
+  --accent: #92B600;
+  --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: #E8E4D5;
+  --input: #E8E4D5;
+  --ring: #92B600;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #FDFBF2;
+  --sidebar-foreground: #7A6856;
+  --sidebar-primary: #92B600;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #E8F0E4;
+  --sidebar-accent-foreground: #5B4023;
+  --sidebar-border: #E8E4D5;
+  --sidebar-ring: #92B600;
+
+  /* Custom palette matching hamada-dental */
+  --hd-dark-brown: #5B4023;
+  --hd-leaf-green: #92B600;
+  --hd-soft-cream: #FDFBF2;
+  --hd-text-brown: #7A6856;
 }
 
 .dark {
@@ -238,5 +244,10 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "palt";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[var(--hd-dark-brown)] font-bold;
   }
 }

@@ -47,8 +47,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className="scroll-smooth">
-      <body className={`${mPlusRounded.variable} font-sans antialiased text-[#2C3E35] bg-[#FAF9F5]`}>
-        {children}
+      <body className={`${mPlusRounded.variable} font-sans antialiased`}>
+        <div className="md:pr-40 min-h-screen">
+          {children}
+        </div>
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
     </html>
