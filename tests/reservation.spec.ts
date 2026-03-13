@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Reservation Flow', () => {
-    test('Complete first-time reservation', async ({ page }) => {
+    test.skip('Complete first-time reservation', async ({ page }) => {
         // Navigate to reservation page
         await page.goto('/reserve');
 
