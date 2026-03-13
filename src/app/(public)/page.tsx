@@ -3,8 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Leaf, Bird, MapPin, Clock, CalendarCheck, HeartPulse, Sparkles, Smile, MessageCircle, ChevronRight, ArrowRight } from "lucide-react";
+import { Leaf, Bird, MapPin, Clock, CalendarCheck, Sparkles, MessageCircle, ChevronRight, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
 export default function Home() {

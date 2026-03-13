@@ -2,7 +2,18 @@ import Link from "next/link";
 import { Calendar, Phone, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
+import { useState, useEffect } from "react";
+
 export function MobileCTA() {
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
+
     return (
         <div className="md:hidden fixed bottom-0 left-0 z-50 w-full bg-[#FAF9F5] border-t border-[#E8F0E4] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] pb-safe-area">
             <div className="flex h-16">

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: `${siteConfig.url}/ogp.jpg`,
+        url: `${siteConfig.url}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: `${siteConfig.name}の院内風景`,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/ogp.jpg`],
+    images: [`${siteConfig.url}/og-image.jpg`],
   },
 };
 
@@ -54,9 +54,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className="scroll-smooth">
       <body className={`${mPlusRounded.variable} ${lato.variable} font-sans antialiased text-[#7A6856]`}>
-        <div className="md:pr-64 min-h-screen">
-          {children}
-        </div>
+        {children}
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
     </html>
