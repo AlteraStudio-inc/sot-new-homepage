@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { M_PLUS_Rounded_1c } from "next/font/google";
+import { M_PLUS_Rounded_1c, Lato } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
@@ -8,6 +8,12 @@ const mPlusRounded = M_PLUS_Rounded_1c({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-m-plus-rounded",
+});
+
+const lato = Lato({
+    subsets: ["latin"],
+    weight: ["300", "400", "700"],
+    variable: "--font-lato",
 });
 
 export const metadata: Metadata = {
@@ -47,8 +53,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className="scroll-smooth">
-      <body className={`${mPlusRounded.variable} font-sans antialiased`}>
-        <div className="md:pr-40 min-h-screen">
+      <body className={`${mPlusRounded.variable} ${lato.variable} font-sans antialiased text-[#7A6856]`}>
+        <div className="md:pr-64 min-h-screen">
           {children}
         </div>
       </body>
